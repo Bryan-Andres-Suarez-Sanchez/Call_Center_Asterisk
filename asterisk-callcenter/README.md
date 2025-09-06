@@ -159,3 +159,5 @@ core set verbose 5          # Aumentar verbosidad
 - **Logs del contenedor:** `docker logs asterisk-callcenter`
 - **Logs de Asterisk:** `./logs/asterisk/messages`
 - **Monitor en tiempo real:** `docker exec -it asterisk-callcenter asterisk -r`
+
+#docker exec -it asterisk-callcenter asterisk -rvvv

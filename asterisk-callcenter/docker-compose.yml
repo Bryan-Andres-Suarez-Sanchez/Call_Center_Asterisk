@@ -5,7 +5,7 @@ services:
     build: .
     container_name: asterisk-callcenter
     ports:
-      - "5060:5060/udp"    # SIP
+      - "5060:5060/udp"          # SIP
       - "10000-10100:10000-10100/udp"  # RTP
     volumes:
       - ./config:/etc/asterisk
@@ -17,7 +17,29 @@ services:
     restart: unless-stopped
     networks:
       - callcenter-net
-    
+
+  sip600:
+    build: ./baresip
+    container_name: sip600
+    volumes:
+      - ./baresip/config600:/etc/baresip
+    networks:
+      - callcenter-net
+    depends_on:
+      - asterisk
+    restart: unless-stopped
+
+  sip700:
+    build: ./baresip
+    container_name: sip700
+    volumes:
+      - ./baresip/config700:/etc/baresip
+    networks:
+      - callcenter-net
+    depends_on:
+      - asterisk
+    restart: unless-stopped
+
 volumes:
   asterisk_spool:
 
